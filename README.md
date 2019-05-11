@@ -1,8 +1,10 @@
-# toDoApp with React
+# Build a toDoApp with React
 
-This is a simple react todo app with react.
+This is a simple react todo app built with react.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+If you want to follow along the tutorial to build this, head over to the React & Redux Complete tutorial playlist on The Net Ninja YouTube channel.
 
 ## Instructions
 
