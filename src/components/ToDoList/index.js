@@ -1,7 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-const ToDoList = ({ todos, handleDeleteToDo }) => (
+const ToDoList = ({ todos, deleteToDo }) => (
 
   <ul className="collection">
     {  
@@ -14,7 +14,7 @@ const ToDoList = ({ todos, handleDeleteToDo }) => (
           <li 
             className="collection-item" 
             key={ todo.id }
-            onClick={() => handleDeleteToDo(todo.id)}
+            onClick={() => deleteToDo(todo.id)}
           >
             { todo.todo }
           </li>
@@ -25,8 +25,16 @@ const ToDoList = ({ todos, handleDeleteToDo }) => (
 
 );
 
-ToDoList.propTypes = {
-  todos: PropTypes.array
+const mapStateToProps = (state) => {
+  return {
+    todos: state.todos
+  };
 };
 
-export default ToDoList;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteToDo: (id) => dispatch({ type: "DELETE_TODO", id })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToDoList);

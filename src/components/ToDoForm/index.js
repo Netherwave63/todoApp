@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class ToDoForm extends React.Component {
 
@@ -12,9 +12,9 @@ class ToDoForm extends React.Component {
   }
 
   handleSubmit = event => {
-    this.props.handleAddNewToDo(this.state.todo);
-    this.setState({ todo: "" });
     event.preventDefault();
+    this.props.addToDo(this.state.todo);
+    this.setState({ todo: "" });
   }
 
   render() {
@@ -32,8 +32,10 @@ class ToDoForm extends React.Component {
 
 }
 
-ToDoForm.propTypes = {
-  handleAddNewToDo: PropTypes.func
+const mapDispatchToProps = dispatch => {
+  return {
+    addToDo: todo => dispatch({ type: "ADD_TODO", todo })
+  };
 };
 
-export default ToDoForm;
+export default connect(null, mapDispatchToProps)(ToDoForm);
